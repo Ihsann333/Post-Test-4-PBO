@@ -129,3 +129,40 @@ Konstruktor dipanggil saat membuat objek RuangAcara. super(...) digunakan untuk 
 <img width="281" height="89" alt="image" src="https://github.com/user-attachments/assets/50e7714d-a208-455a-a2af-a3d4fe8dd12d" />
 
 Method ini meng-override method getTipe() yang ada di superclass. Setiap objek RuangAcara yang dipanggil dengan getTipe() akan selalu mengembalikan string "Ruang Acara". Dengan overriding ini, sistem bisa membedakan antara RuangAcara dan RuangMeeting meskipun keduanya sama-sama turunan dari model.
+
+<img width="318" height="29" alt="image" src="https://github.com/user-attachments/assets/bdca6d37-2797-40c0-b296-ce22b71d6f57" />
+
+menandakan bahwa class model adalah abstract class.
+Artinya, class ini tidak bisa dibuat objeknya langsung, melainkan hanya dipakai sebagai cetakan dasar bagi class turunan.
+Di dalamnya terdapat method
+
+<img width="386" height="38" alt="image" src="https://github.com/user-attachments/assets/5b6099ae-02e2-427e-a72f-5104e66ece5b" />
+
+yang juga bersifat abstract. Method ini hanya berisi nama dan tipe nilai kembaliannya saja tanpa isi, sehingga setiap class turunan seperti RuangMeeting dan RuangAcara wajib menuliskan isi method tersebut sendiri.
+Dengan cara ini, kerangka dasar seperti atribut kode, nama, dan kapasitas sudah ditentukan di satu tempat, tetapi detail tipe ruang bisa berbeda sesuai subclass yang membuatnya.
+
+<img width="343" height="26" alt="image" src="https://github.com/user-attachments/assets/66b0800b-3473-4018-8503-f9555e6987b5" />
+
+berisi daftar method create, read, update, dan delete.
+Interface ini bertindak sebagai kontrak: setiap class yang menuliskan
+
+<img width="473" height="29" alt="image" src="https://github.com/user-attachments/assets/35bf9501-046f-43e4-8fd1-b4fbfc5539f4" />
+
+(seperti pada file src/service/service.java) harus menyediakan implementasi dari semua method tersebut.
+Dengan adanya kontrak ini, kita dijamin bahwa class service akan selalu memiliki fungsi CRUD lengkap, meskipun cara kerjanya bisa diatur sendiri di dalam class tersebut.
+
+contoh overloading:
+
+<img width="255" height="28" alt="image" src="https://github.com/user-attachments/assets/184ef12c-0eaf-41f9-b0d3-c9fe99b7d9b4" />
+<img width="402" height="30" alt="image" src="https://github.com/user-attachments/assets/8d95fce2-fecd-40fc-81a9-c41f7e0e1dde" />
+
+Kedua method memiliki nama yang sama tetapi parameter berbeda.
+Versi tanpa parameter digunakan untuk meminta input kata kunci langsung dari pengguna, lalu di dalamnya memanggil versi dengan parameter untuk melakukan pencarian.
+Karena Java dapat memilih method yang sesuai berdasarkan cara pemanggilannya, kita bisa memanggil search() atau search("C101") sesuai kebutuhan tanpa harus membuat nama method baru.
+
+contoh overriding:
+
+<img width="574" height="52" alt="image" src="https://github.com/user-attachments/assets/57a1a174-471c-44c5-a482-f3be07f69615" />
+<img width="495" height="47" alt="image" src="https://github.com/user-attachments/assets/f104f4da-2537-46e1-8f68-063570854274" />
+
+Dengan overriding ini, meskipun objek disimpan dalam variabel bertipe model, ketika getTipe() dipanggil Java tetap akan menjalankan method sesuai jenis objek sebenarnya.
